@@ -1,0 +1,1 @@
+CreateObject("Wscript.Shell").Run "gridd.bat",0,True

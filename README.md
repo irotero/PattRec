@@ -9,7 +9,7 @@ This tool was designed for use with target gene panels, sequenced in Illumina pl
 
 For Windows 10 systems, please use PattRec_Windows_v1.0:
 
-https://github.com/irotero/PattRec/releases/download/v1.0/PattRec_Ubuntu_v1.0.zip
+https://github.com/irotero/PattRec/releases/download/v1.0/PattRec_Windows_v1.0.zip
 
 
 

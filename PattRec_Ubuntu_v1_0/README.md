@@ -54,9 +54,11 @@ USER MANUAL
 2. Select input files:
 	- BAM test: BAM file of the test sample (patient).
 	- BAM control: one or more BAM files to compare with the BAM test.
+		
 		*NOTE: It is highly recommended that all the BAM files were sequenced on the same run.*
 	- BED file: file containing the target regions (sequenced regions) in BED format.
 	- FASTA file: genome reference file (it must be the same used for the alignment of the BAM files).
+		
 		*NOTE: GRCh37-hg19 can be downloaded from: http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/*
 		*GRCh38-hg38 can be downloaded from: http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/*
 

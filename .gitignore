@@ -1,0 +1,39 @@
+
+.DS_Store
+PattRec_Ubuntu_v1_0/.DS_Store
+PattRec_Ubuntu_v1_0/res/.DS_Store
+    # Compiled source #
+    ###################
+    *.com
+    *.class
+    *.dll
+    *.exe
+    *.slo
+    *.lo
+    *.o
+    *.obj
+    *.out
+    *.so
+    build/
+    dist/
+    *.pyc
+    *.bat
+    *.bat.old
+
+    # local configuration #
+    ###################
+    build/
+    nbbuild/
+    dist/
+    nbdist/
+    .nb-gradle/
+    nbproject/private/*
+    .idea/*
+
+    # virtual machine crash logs #
+    ###################
+    hs_err_pid*
+
+    # Trash #
+    ###################
+    *~

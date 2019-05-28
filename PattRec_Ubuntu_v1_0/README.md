@@ -31,8 +31,8 @@ Some configurations have to be performed before running the program:
 
 1. If you haven't done it yet, install rJava:
 
-                $ R CMD INSTALL lib/rJava_0.9-11.tar.gz
-
+    Terminal:            $ R CMD INSTALL lib/rJava_0.9-11.tar.gz
+	R:					 $ install.packages("rJava")
 
 2. Set configurations (change the path if needed):
 

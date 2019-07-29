@@ -24,12 +24,14 @@ public class RCNVScript implements RMainLoopCallbacks {
         this.rCode =  "scriptR <- function(per_dup, per_del, per_gene_dup, per_gene_del, cov_cont, fvcf, excel, genes, restr, fixed, down, do_plot, userDB, passwordDB, wd, name_test, name_fasta, name_cont, polymorphic, poly_regions) {\n" +
 	"options(warn= -1)\n" +
 	"set.seed(1)\n" +
-        "list.of.packages <- c(\"outliers\", \"openxlsx\", \"RMySQL\")\n" +
+        "list.of.packages <- c(\"outliers\", \"openxlsx\", \"RMySQL\", \"remotes\")\n" +
         "new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,\"Package\"])]\n" +
         "if(length(new.packages)!=0) install.packages(new.packages, repos = \"http://cloud.r-project.org/\")\n" +
+		"if(!\"poolR\"%in%installed.packages()[,\"Package\"]) remotes::install_github(\"ozancinar/poolR\")\n" +
         "library(outliers)\n" +
         "library(RMySQL)\n" +
         "library(openxlsx)\n" +
+        "library(poolR)\n" +
         "#------------------------------------------------------------------------------\n" +
         "per_dup <- as.numeric(per_dup)\n" +
         "per_del <- as.numeric(per_del)\n" +
@@ -704,7 +706,7 @@ public class RCNVScript implements RMainLoopCallbacks {
 	"					output$CV_norm[index[1]] <- mean(output$CV_norm[index[lll]], na.rm=T)\n" +
 	"					d <- which(!is.na(output$GC[index]))\n" +
 	"					output$GC[index[1]] <- sum((output$End[index][d]-output$Start[index][d])*output$GC[index][d])/sum(output$End[index][d]-output$Start[index][d])\n" +
-	"					output$pvalue[index[1]] <- min(output$pvalue[index[lll]],na.rm=T)\n" +
+	"					output$pvalue[index[1]] <- fisher(p=output$pvalue[index[lll]],adjust=\"generalized\", R=csconv(p = output$pvalue[index[lll]]))\n" +
 	"					output[index[1],colpos] <- max(output[index[lll],colpos],na.rm=T)\n" +
 	"					output<-output[-index[2:length(index)],]\n" +
 	"				}\n" +
@@ -724,7 +726,7 @@ public class RCNVScript implements RMainLoopCallbacks {
 	"				output$CV[output$Gen==i][k] <- mean(output$CV[output$Gen==i][c(k,k+2)], na.rm=T)\n" +
 	"				output$CV_norm[output$Gen==i][k] <- mean(output$CV_norm[output$Gen==i][c(k,k+2)], na.rm=T)\n" +
 	"				output$GC[output$Gen==i][k] <- sum((output$End[output$Gen==i][k:(k+2)]-output$Start[output$Gen==i][k:(k+2)])*output$GC[output$Gen==i][k:(k+2)])/sum(output$End[output$Gen==i][k:(k+2)]-output$Start[output$Gen==i][k:(k+2)])\n" +
-	"				output$pvalue[output$Gen==i][k] <- min(output$pvalue[output$Gen==i][k:(k+2)],na.rm=T)\n" +
+	"				output$pvalue[output$Gen==i][k] <- fisher(p=output$pvalue[output$Gen==i][k:(k+2)], adjust=\"generalized\", R=csconv(p=output$pvalue[output$Gen==i][k:(k+2)]))\n" +
 	"				output[output$Gen==i,16][k] <- max(output[output$Gen==i,16][k:(k+2)],na.rm=T)\n" +
 	"				output <- output[-which(output[,2]%in%output[output$Gen==i,2][c(k+1,k+2)] & output$Gen==i),]\n" +
 	"			}\n" +
